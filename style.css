@@ -329,14 +329,109 @@ section#booking-content {
     padding: 2rem;
 }
 
-section#booking-content p {
+section#booking-content p,
+.booking-date__contact p {
     color: var(--color-primary);
 }
 
+.booking-content__icons {
+    margin-left: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.booking-content__icons--weather,
+.booking-content__icons--time {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 10vh;
+    justify-items: start;
+    align-items: center;
+}
+
 section#booking-date {
-    background-color: var(--color-tertiary);
     grid-column: col-start 7 / center-end;
-    height: 400px;
+    padding: var(--padding-section);
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.booking-date__schedule {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 2vw;
+    place-items: center;
+}
+
+.booking-date__schedule--arrival,
+.booking-date__schedule--departure,
+.booking-date__schedule--guests {
+    display: grid;
+    grid-row-gap: 3vh;
+}
+
+.booking-date__schedule--arrival h5,
+.booking-date__schedule--departure h5,
+.booking-date__schedule--guests h5 {
+    font-size: calc(1rem + 1vw);
+    text-align: center;
+}
+
+.booking-date__schedule--arrival>div,
+.booking-date__schedule--departure>div,
+.booking-date__schedule--guests>div {
+    background-color: var(--color-secondary);
+    padding: 2rem 4rem;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    place-items: center;
+    position: relative;
+}
+
+.booking-date__schedule--arrival>div::before,
+.booking-date__schedule--departure>div::before,
+.booking-date__schedule--guests>div::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -1.5rem;
+    border-width: 1.5rem;
+    border-style: solid;
+    border-color: transparent transparent var(--color-secondary);
+}
+
+.booking-date__schedule--arrival>div p:nth-of-type(2),
+.booking-date__schedule--departure>div p:nth-of-type(2),
+.booking-date__schedule--guests>div p:nth-of-type(2) {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.booking-date__contact {
+    align-self: center;
+}
+
+.booking-date__contact--link:link,
+.booking-date__contact--link:visited {
+    background-color: var(--color-secondary);
+    color: white;
+    transition: all var(--transition-duration) ease-in-out;
+}
+
+.booking-date__contact--link:hover,
+.booking-date__contact--link:active {
+    background-color: white;
+    color: var(--color-secondary);
+    border: 0.1rem solid var(--color-secondary);
+}
+
+.booking-date__contact p:first-of-type {
+    margin-top: 4rem;
+}
+
+.booking-date__contact p {
+    font-size: 2rem;
 }
 
 section#villas {
@@ -406,8 +501,60 @@ footer#footer {
     }
 }
 
+@media screen and (max-width: 800px) {
+    section#booking-content {
+        grid-column: center-start / center-end;
+        padding: 4vh 3vw;
+    }
+    .booking-content__title {
+        text-align: center;
+    }
+    .booking-content__title::after {
+        width: 20%;
+        left: 40%;
+    }
+    section#booking-date {
+        grid-column: center-start / center-end;
+        padding: 4vh 3vw;
+        grid-row-gap: 7vh;
+    }
+    .booking-date__schedule--arrival>div,
+    .booking-date__schedule--departure>div,
+    .booking-date__schedule--guests>div {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: min-content;
+        grid-column-gap: 2vw;
+        place-items: center;
+        padding: 2rem;
+    }
+}
+
 @media screen and (max-width: 600px) {
     .header__logo__content--content__para {
         font-size: 2rem;
+    }
+    .booking-content__para {
+        font-size: 1.5rem;
+    }
+    section#booking-date {
+        grid-template-rows: repeat(2, max-content);
+    }
+    .booking-date__schedule--arrival>div,
+    .booking-date__schedule--departure>div,
+    .booking-date__schedule--guests>div {
+        padding: 4rem;
+        grid-template-columns: min-content;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .booking-date__schedule {
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: auto;
+        grid-row-gap: 4vh;
+    }
+    .booking-date__contact {
+        justify-self: center;
+        padding: 0 2rem;
     }
 }
