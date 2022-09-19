@@ -564,13 +564,15 @@ section#motto {
     background-color: white;
 }
 
-section#events-content {
+section#events-content,
+section#features-content {
     grid-column: container-start / col-end 9;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
 
-section#events-content>div {
+section#events-content>div,
+section#features-content>div {
     padding: var(--padding-section);
     display: grid;
     grid-template-areas: 'title' 'para';
@@ -591,20 +593,23 @@ section#events-content>div:last-child {
     border-left: 0.2rem solid var(--color-tertiary);
 }
 
-section#events-content>div h2[class*=title] {
+section#events-content>div h2[class*=title],
+section#features-content>div h2[class*=title] {
     grid-area: title;
     font-size: var(--font-size-title);
     font-weight: 400;
     color: white;
 }
 
-section#events-content>div p[class*='para'] {
+section#events-content>div p[class*='para'],
+section#features-content>div p[class*='para'] {
     grid-area: para;
     color: white;
     font-weight: 500;
 }
 
-section#events-text {
+section#events-text,
+section#features-text {
     background-color: var(--color-tertiary);
     grid-column: col-start 10 / center-end;
     display: grid;
@@ -613,11 +618,13 @@ section#events-text {
     place-items: center;
 }
 
-.events-text__content {
+.events-text__content,
+.features-text__content {
     transform: rotate(0.25turn);
 }
 
 .events-text__content--title,
+.features-text__content--title,
 .gallery-text__content--title {
     font-size: var(--font-size-title);
     font-weight: 500;
@@ -657,7 +664,7 @@ section#gallery-carousel {
     position: relative;
     height: 100%;
     width: 100%;
-    transition: transform 2s ease-in-out;
+    transition: transform var(--transition-duration) ease-in-out;
 }
 
 .gallery-carousel__img-container--list__item {
@@ -716,28 +723,170 @@ section#gallery-carousel {
     background-color: var(--color-primary);
 }
 
-section#features-content {
-    background-color: var(--color-primary);
-    grid-column: container-start / col-end 9;
-    height: 400px;
+.hidden {
+    display: none;
+}
+
+section#features-content>div {
+    background-position: left;
+    background-size: cover;
+}
+
+section#features-content>div:first-child {
+    background: linear-gradient(var(--color-secondary-m-light), var(--color-secondary-m-light)), url('img/Features/cocktail.jpg');
+    border-right: 0.2rem solid var(--color-secondary);
+}
+
+section#features-content>div:last-child {
+    background: linear-gradient(var(--color-secondary-m-light), var(--color-secondary-m-light)), url('img/Features/surfing.jpg');
+    border-left: 0.2rem solid var(--color-secondary);
 }
 
 section#features-text {
     background-color: var(--color-secondary);
-    grid-column: col-start 10 / center-end;
-    height: 400px;
 }
 
 section#testimonials {
-    background-color: var(--color-tertiary);
     grid-column: center-start / center-end;
-    height: 400px;
+    padding: var(--padding-section);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 28rem);
+    grid-gap: 5rem;
+    place-content: center;
+}
+
+.testimonials__card {
+    width: 28rem;
+    height: 50rem;
+    position: relative;
+}
+
+.testimonials__card--front,
+.testimonials__card--back {
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: cover !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all .5s ease-in-out;
+    backface-visibility: hidden !important;
+    transform: perspective(100rem) !important;
+    display: grid;
+    justify-items: center;
+    align-items: start;
+    padding: 3rem;
+}
+
+.testimonials__card--front h2 {
+    background-color: var(--color-secondary-m-light);
+    padding: 1rem;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    text-align: center;
+}
+
+.testimonials__card--back p {
+    place-self: center;
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.testimonials__card:first-child .testimonials__card--front {
+    background: url('img/Testimonials/testimonials-1.jpg');
+}
+
+.testimonials__card:nth-child(2) .testimonials__card--front {
+    background: url('img/Testimonials/testimonials-2.jpg');
+}
+
+.testimonials__card:nth-child(3) .testimonials__card--front {
+    background: url('img/Testimonials/testimonials-3.jpg');
+}
+
+.testimonials__card:nth-child(4) .testimonials__card--front {
+    background: url('img/Testimonials/testimonials-4.jpg');
+}
+
+.testimonials__card:nth-child(5) .testimonials__card--front {
+    background: url('img/Testimonials/testimonials-5.jpg');
+}
+
+.testimonials__card:last-child .testimonials__card--front {
+    background: url('img/Testimonials/testimonials-6.jpg');
+}
+
+.testimonials__card--back {
+    transform: perspective(100rem) rotateY(90deg) !important;
+    background-color: var(--color-secondary);
+}
+
+.testimonials__card:hover .testimonials__card--front {
+    transform: perspective(100rem) rotateY(0.5turn) !important;
+}
+
+.testimonials__card:hover .testimonials__card--back {
+    transform: perspective(100rem) rotateY(1turn) !important;
 }
 
 footer#footer {
     background-color: var(--color-primary);
     grid-column: container-start / container-end;
-    height: 400px;
+    padding: 6vh 4vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+}
+
+.footer__social--link:link,
+.footer__social--link:visited {
+    display: inline-block;
+    background-color: var(--color-secondary);
+    border-radius: 4rem;
+    margin-right: 1rem;
+    box-shadow: 0.5rem 0.5rem 2rem 0.5rem var(--color-secondary-m-light), -0.5rem -0.5rem 2rem 0.5rem var(--color-secondary-m-light);
+    transform: scale(0.8);
+    animation: social 3s linear infinite;
+}
+
+.footer__social--link i {
+    color: var(--color-primary);
+    font-size: 2rem;
+}
+
+.footer__social--link:link:nth-child(1),
+.footer__social--link:visited:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.footer__social--link:link:nth-child(2),
+.footer__social--link:visited:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.footer__social--link:link:nth-child(3),
+.footer__social--link:visited:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.footer__social--link:link:nth-child(4),
+.footer__social--link:visited:nth-child(4) {
+    animation-delay: 0.9s;
+}
+
+@keyframes social {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 @media screen and (max-width: 1000px) {
@@ -776,6 +925,11 @@ footer#footer {
     section#villas {
         grid-gap: 0;
     }
+    footer#footer {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        grid-row-gap: 3rem;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -786,7 +940,8 @@ footer#footer {
     div[class^='villas'] p[class^='villas'],
     .motto__content--para,
     section#events-content>div p,
-    section#features-content>div p {
+    section#features-content>div p,
+    footer#footer p {
         font-size: 1.5rem;
     }
     section#booking-date {
@@ -801,7 +956,8 @@ footer#footer {
     div[class^='villas'] p[class^='villas'] {
         margin: 1.5rem 0 4rem;
     }
-    section#events-content {
+    section#events-content,
+    section#features-content {
         grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     }
     section#events-content,
@@ -826,6 +982,9 @@ footer#footer {
         grid-template-rows: repeat(2, 1fr);
         grid-gap: 5vh 10vw;
         height: 15%;
+    }
+    footer#footer {
+        padding: 4vh 2vw;
     }
 }
 
